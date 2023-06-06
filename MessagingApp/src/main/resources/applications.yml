@@ -1,0 +1,8 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: Iv1.23fa2c54b3a39138
+            client-secret: ea185efe35a167d5e4fe5828b67eaad1fd8df904
