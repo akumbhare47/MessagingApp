@@ -5,16 +5,16 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.12</version>
+		<version>2.5.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>MessagingApp</groupId>
-	<artifactId>messaging-app</artifactId>
+	<groupId>io.javabrains</groupId>
+	<artifactId>github-auth-template</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Messaging app</name>
-	<description>messaging app using github</description>
+	<name>github-auth-template</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
