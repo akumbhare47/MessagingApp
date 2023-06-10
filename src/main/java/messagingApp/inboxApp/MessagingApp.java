@@ -35,7 +35,6 @@ public class MessagingApp {
 		folderRepository.save(new Folder("akumbhare47", "inbox", "blue"));
 		folderRepository.save(new Folder("akumbhare47", "Sent", "green"));
 		folderRepository.save(new Folder("akumbhare47", "important", "red"));
-		folderRepository.save(new Folder("pawansp", "junk", "yeloow"));
 	}
 
 
