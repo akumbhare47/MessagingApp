@@ -1,6 +1,7 @@
 package messagingApp.inboxApp;
 
 import java.nio.file.Path;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
@@ -11,6 +12,11 @@ import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomi
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
+
+import messagingApp.inboxApp.emaillist.EmailListItem;
+import messagingApp.inboxApp.emaillist.EmailListItemKey;
+import messagingApp.inboxApp.emaillist.EmailListItemRepository;
 import messagingApp.inboxApp.folders.Folder;
 import messagingApp.inboxApp.folders.FolderRepository;
 
@@ -19,6 +25,7 @@ import messagingApp.inboxApp.folders.FolderRepository;
 public class MessagingApp {
 
 	@Autowired FolderRepository folderRepository;
+	@Autowired EmailListItemRepository emailListItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MessagingApp.class, args);
@@ -35,6 +42,21 @@ public class MessagingApp {
 		folderRepository.save(new Folder("akumbhare47", "inbox", "blue"));
 		folderRepository.save(new Folder("akumbhare47", "Sent", "green"));
 		folderRepository.save(new Folder("akumbhare47", "important", "red"));
+
+		for(int i = 0; i < 10; i++){
+			EmailListItemKey key = new EmailListItemKey();
+			key.setId("akumbhare47");
+			key.setLabel("Inbox");
+			key.setTimeUUID(Uuids.timeBased());
+
+			EmailListItem item = new EmailListItem();
+			item.setKey(key);
+			item.setTo(Arrays.asList("akumbhare47"));
+			item.setSubject("subject" + i);
+			item.setUnread(true);
+
+			emailListItemRepository.save(item);
+		}
 	}
 
 

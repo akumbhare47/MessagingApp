@@ -29,12 +29,16 @@ public class inboxController {
         if(principal == null || !StringUtils.hasText(principal.getAttribute("login"))){
             return "index";
         }
+
+        // fetch Folders
     String userId = principal.getAttribute("login");
     List<Folder> userFolders = folderRepository.findAllById(userId);
     model.addAttribute("userFolders", userFolders);
 
     List<Folder> defaultFolders = folderService.fetchDefaultFolders(userId);
     model.addAttribute("defaultFolders", defaultFolders);
+
+        //fetch messages
     
      return "inbox-page";
     }

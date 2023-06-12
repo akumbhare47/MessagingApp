@@ -12,5 +12,4 @@ public interface FolderRepository extends CassandraRepository<Folder, String> {
     List<Folder> findAllById(String id, Pageable pageRequest);
     List<Folder> findAllById(String id);
 
-
 }
