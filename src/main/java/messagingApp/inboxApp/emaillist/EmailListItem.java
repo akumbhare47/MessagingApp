@@ -1,5 +1,6 @@
 package messagingApp.inboxApp.emaillist;
 
+import java.beans.Transient;
 import java.util.List;
 import java.util.UUID;
 
@@ -9,6 +10,8 @@ import org.springframework.data.cassandra.core.mapping.CassandraType.Name;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
+import org.ocpsoft.prettytime.PrettyTime;
+
 
 @Table(value = "messages_by_user_folder")
 
@@ -27,6 +30,9 @@ public class EmailListItem {
     
     @CassandraType(type = Name.BOOLEAN)
     private boolean isUnread;
+
+    @org.springframework.data.annotation.Transient
+    private String agoTimeString;
 
     public EmailListItemKey getKey() {
         return key;
@@ -60,5 +66,14 @@ public class EmailListItem {
         this.isUnread = isUnread;
     }
 
+    public String getAgoTimeString() {
+        return agoTimeString;
+    }
+
+    public void setAgoTimeString(String agoTimeString) {
+        this.agoTimeString = agoTimeString;
+    }
+
+    
     
 }
