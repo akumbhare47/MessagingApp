@@ -1,45 +1,49 @@
-package messagingApp.inboxApp.emaillist;
+package messagingApp.inboxApp.emailslist;
 
-import java.beans.Transient;
 import java.util.List;
-import java.util.UUID;
 
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.cassandra.core.mapping.CassandraType;
 import org.springframework.data.cassandra.core.mapping.CassandraType.Name;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
-import org.ocpsoft.prettytime.PrettyTime;
 
-
-@Table(value = "messages_by_user_folder")
-
-public class EmailListItem {
-
+@Table(value = "emails_by_user")
+public class EmailsList {
+    
     @PrimaryKey
-    private EmailListItemKey key;
+    private EmailsListPrimaryKey id;
 
+    @CassandraType(type = CassandraType.Name.TEXT)
+    private String from;
 
-    @CassandraType(type = Name.LIST, typeArguments = Name.TEXT)
+    @CassandraType(type = CassandraType.Name.LIST, typeArguments = Name.TEXT)
     private List<String> to;
 
-
-    @CassandraType(type = Name.TEXT)
+    @CassandraType(type = CassandraType.Name.TEXT)
     private String subject;
-    
-    @CassandraType(type = Name.BOOLEAN)
-    private boolean isUnread;
 
-    @org.springframework.data.annotation.Transient
+    @CassandraType(type = CassandraType.Name.BOOLEAN)
+    private boolean isRead;
+
+    @Transient
     private String agoTimeString;
 
-    public EmailListItemKey getKey() {
-        return key;
+
+    public EmailsListPrimaryKey getId() {
+        return id;
     }
 
-    public void setKey(EmailListItemKey key) {
-        this.key = key;
+    public void setId(EmailsListPrimaryKey id) {
+        this.id = id;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public List<String> getTo() {
@@ -58,12 +62,12 @@ public class EmailListItem {
         this.subject = subject;
     }
 
-    public boolean isUnread() {
-        return isUnread;
+    public boolean isRead() {
+        return isRead;
     }
 
-    public void setUnread(boolean isUnread) {
-        this.isUnread = isUnread;
+    public void setRead(boolean isRead) {
+        this.isRead = isRead;
     }
 
     public String getAgoTimeString() {
@@ -74,6 +78,5 @@ public class EmailListItem {
         this.agoTimeString = agoTimeString;
     }
 
-    
-    
+
 }
