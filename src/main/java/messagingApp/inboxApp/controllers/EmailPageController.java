@@ -27,6 +27,7 @@ import messagingApp.inboxApp.folders.UnreadEmailStatsRepository;
 @Controller
 public class EmailPageController {
 
+    //email controller
     @Autowired 
     private FolderRepository folderRepository;
     
